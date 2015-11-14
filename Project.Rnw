@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{url}
+\usepackage{color}
+\usepackage{algorithm}
+
+\title{MATH154 Project: Analyzing Yelp Data or something}
+\author{Math 154, Computational Statistics\\
+Fall 2015, Beauttie Kuture, Maria Martinez, Yenny Zhang}
+
+\begin{document}
+\maketitle
+\large
+
+\begin{enumerate}
+\item Hello
+<<>>=
+install.packages("rjson")
+library("rjson")
+file <- "~/MATH154/yelp_academic_dataset_business.json"
+conn <- file(file, "r")
+input <- readLines(conn, -1L)
+business <- lapply(input, fromJSON)
+business <- lapply(business, cbind)
+business.df <- as.data.frame(business)
+business.df <- as.data.frame(t(business.df))
+row.names(business.df) <-seq(1, nrow(business.df))
+head(business.df)
+@
+\end{enumerate}
+\end{document}
